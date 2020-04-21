@@ -23,12 +23,23 @@ export PATH=${JAVA_HOME}/bin:${PATH}
 
 ## Build
 
+### Local mvn build + docker
+
 ```
 ./mvnw -Pgraal clean package
 ```
 
 ```
-docker build . -t trisberg/upper-graal
+docker build -t trisberg/upper-graal .
+docker push trisberg/upper-graal
+```
+
+### Multi-stage docker build
+
+> This takes a little longer but you don't need to install GraalVM locally.
+
+```
+docker build -f multi-stage.Dockerfile -t trisberg/upper-graal .
 docker push trisberg/upper-graal
 ```
 
